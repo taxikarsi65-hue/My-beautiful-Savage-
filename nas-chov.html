@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Náš chov — Nuru Nyota</title>
+  <meta name="description" content="Chovatelská stanice basenji — Náš chov — Nuru Nyota">
+  <link rel="stylesheet" href="fonts.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Шапка вставляется из app.js -->
+  <div id="site-header"></div>
+
+  <main><div class="wrap"><div id="content"></div></div></main>
+
+  <!-- Подвал вставляется из app.js -->
+  <div id="site-footer"></div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+  <script>
+    renderChrome('chov');
+    renderChov(document.getElementById('content'));
+  </script>
+</body>
+</html>

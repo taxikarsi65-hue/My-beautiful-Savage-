@@ -1,0 +1,347 @@
+/* =========================================================================
+   MY BEAUTIFUL SAVAGE — basenji
+   styles.css — эстетика «издательский полевой дневник»
+   Тёплая бумага с зерном · чернильный + оксбладно-красный · Baskerville + Lora
+   Цвета/шрифты — в :root. Структуру данных не трогаем (всё в data.js).
+   ========================================================================= */
+
+:root {
+  /* --- ПАЛИТРА --- */
+  --paper:     #f1e8d6;   /* тёплая бумага (фон) */
+  --paper-2:   #eadfC9;   /* панели, таблицы */
+  --paper-3:   #e6d9bf;   /* заливка плашек */
+  --ink:       #241d17;   /* основной текст (тёмная умбра) */
+  --ink-soft:  #6a5f4f;   /* второстепенный текст */
+  --accent:    #8a2b1e;   /* оксбладно-красный (окрас басенджи) */
+  --accent-2:  #b0472a;   /* тёплый ржавый (ховер) */
+  --gold:      #9a7a2c;   /* охра (надзаголовки, метки) */
+  --line:      #c8b997;   /* тёплая волосяная линия */
+  --line-ink:  #241d17;   /* чернильная линия */
+
+  /* --- ШРИФТЫ --- */
+  --display: "Baskerville Display", "GFS Baskerville", Georgia, "Times New Roman", serif;
+  --serif:   "Lora", Georgia, "Times New Roman", serif;
+
+  --maxw: 720px;          /* ширина колонки контента */
+  --maxw-head: 1180px;    /* ширина шапки */
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: 18px;
+  line-height: 1.72;
+  color: var(--ink);
+  background-color: var(--paper);
+  /* зерно бумаги — лёгкий монохромный шум поверх цвета */
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='150' height='150' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+}
+
+img { max-width: 100%; display: block; }
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { color: var(--accent-2); text-decoration: underline; text-underline-offset: 3px; }
+
+/* ---------- КОНТЕЙНЕР ---------- */
+.wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+
+/* ---------- ШАПКА ---------- */
+.site-header {
+  background: rgba(241,232,214,.9);
+  backdrop-filter: blur(3px);
+  border-bottom: 3px double var(--line-ink);
+  position: sticky; top: 0; z-index: 50;
+  animation: fadeIn .7s ease both;
+}
+.site-header .wrap {
+  max-width: var(--maxw-head);
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 24px; min-height: 76px;
+}
+.brand {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: 1.5rem;
+  letter-spacing: .5px;
+  color: var(--ink);
+  white-space: nowrap; flex-shrink: 0; line-height: 1;
+}
+.brand:hover { text-decoration: none; color: var(--accent); }
+.brand small {
+  display: block;
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: .58rem;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-top: 6px;
+}
+
+.nav-toggle {
+  border: 1px solid var(--line-ink); background: transparent;
+  width: 44px; height: 40px; display: none;
+  align-items: center; justify-content: center; cursor: pointer; color: var(--ink);
+}
+.nav-toggle span, .nav-toggle span::before, .nav-toggle span::after {
+  content: ""; display: block; width: 22px; height: 1.5px; background: currentColor; position: relative;
+}
+.nav-toggle span::before { position: absolute; top: -7px; }
+.nav-toggle span::after  { position: absolute; top: 7px; }
+
+.site-nav ul { list-style: none; display: flex; gap: 22px; margin: 0; padding: 0; }
+.site-nav a {
+  display: block; padding: 4px 0;
+  color: var(--ink-soft);
+  font-size: .72rem; font-weight: 600;
+  letter-spacing: .14em; text-transform: uppercase;
+  border-bottom: 2px solid transparent;
+  transition: color .18s ease, border-color .18s ease;
+}
+.site-nav a:hover { color: var(--accent); text-decoration: none; border-color: var(--line); }
+.site-nav a.active { color: var(--accent); border-color: var(--accent); }
+
+/* ---------- ПОДВАЛ ---------- */
+.site-footer {
+  border-top: 3px double var(--line-ink);
+  margin-top: 72px; padding: 30px 0 40px;
+  color: var(--ink-soft); font-size: .82rem; text-align: center;
+  letter-spacing: .04em;
+}
+.site-footer .wrap::before {
+  content: "✦"; display: block; color: var(--accent); font-size: .9rem; margin-bottom: 12px;
+}
+.site-footer a { color: var(--ink-soft); }
+
+/* ---------- ТИПОГРАФИКА ---------- */
+main { padding: 46px 0 10px; position: relative; z-index: 1; }
+#content { animation: riseIn .6s ease both; }
+
+h1, h2, h3 { font-weight: 600; }
+h1 { font-family: var(--display); font-weight: 400; font-size: 2.7rem; line-height: 1.1; letter-spacing: .3px; margin: .1em 0 .5em; }
+h2 {
+  font-size: 1.5rem; color: var(--accent); margin: 1.8em 0 .5em; padding-bottom: .3em;
+  border-bottom: 1px solid var(--line);
+}
+h3 { font-size: 1.18rem; margin: 1.1em 0 .35em; }
+
+p { margin: 0 0 1.1em; }
+
+/* Надзаголовок-«эйброу» над заголовком страницы (текст задаётся ниже по data-page) */
+.page-title { margin-bottom: .5em; }
+.page-title::before {
+  display: block;
+  font-family: var(--serif); font-weight: 600;
+  font-size: .72rem; letter-spacing: .26em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: .7em;
+}
+.page-title::after {
+  content: ""; display: block; width: 54px; height: 2px; background: var(--accent); margin-top: .5em;
+}
+body[data-page="onas"]     .page-title::before { content: "Kdo jsme"; }
+body[data-page="novinky"]  .page-title::before { content: "Deník stanice"; }
+body[data-page="dogs"]     .page-title::before { content: "Naše smečka"; }
+body[data-page="chov"]     .page-title::before { content: "Odchovy"; }
+body[data-page="plemeni"]  .page-title::before { content: "Plemeno"; }
+body[data-page="galerie"]  .page-title::before { content: "Obrazová příloha"; }
+body[data-page="odkazy"]   .page-title::before { content: "Přátelé a kluby"; }
+body[data-page="kontakty"] .page-title::before { content: "Ozvěte se"; }
+
+.lead { font-style: italic; color: var(--ink-soft); font-size: 1.16rem; margin-top: -.2em; }
+
+hr.soft { border: none; border-top: 1px solid var(--line); margin: 40px 0; }
+
+/* ---------- ФОТО-ПЛАСТИНА ---------- */
+.photo {
+  position: relative;
+  background-color: var(--paper-3);
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+  border: 1px solid var(--line-ink);
+  box-shadow: inset 0 0 0 6px var(--paper), inset 0 0 0 7px var(--line);
+  color: var(--ink-soft); font-style: italic; letter-spacing: .02em;
+  display: flex; align-items: center; justify-content: center; text-align: center;
+  font-size: .9rem; padding: 18px; aspect-ratio: 4 / 3;
+}
+
+/* ---------- ГЛАВНАЯ (ÚVOD) ---------- */
+.hero { text-align: center; padding: 30px 0 8px; }
+.hero::before {
+  content: "Chovatelská stanice basenji"; display: block;
+  font-weight: 600; font-size: .72rem; letter-spacing: .28em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 18px;
+}
+.hero .kennel {
+  font-family: var(--display); font-weight: 400;
+  font-size: clamp(2.8rem, 8vw, 4.6rem); line-height: 1; letter-spacing: .5px;
+  margin: 0; color: var(--ink);
+}
+.hero .kennel-sub {
+  display: inline-block; margin-top: 20px; padding-top: 16px;
+  border-top: 1px solid var(--line);
+  color: var(--ink-soft); text-transform: uppercase; letter-spacing: .28em; font-size: .72rem;
+}
+.hero + div .photo { box-shadow: inset 0 0 0 8px var(--paper), inset 0 0 0 9px var(--line); }
+
+.ig-callout {
+  border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+  padding: 22px 20px; text-align: center; margin: 40px 0; font-style: italic; color: var(--ink-soft);
+}
+.ig-callout .ig-handle { font-style: normal; font-weight: 600; letter-spacing: .04em; }
+
+/* ---------- НОВОСТИ — журнальные записи ---------- */
+.news-item {
+  display: grid; grid-template-columns: 132px 1fr; column-gap: 28px;
+  border-top: 1px solid var(--line); padding: 22px 0 6px;
+}
+.news-item:first-of-type { border-top: 2px solid var(--line-ink); }
+.news-item > * { grid-column: 2; }
+.news-item .date {
+  grid-column: 1; grid-row: 1;
+  color: var(--gold); font-size: .72rem; font-weight: 600;
+  letter-spacing: .12em; text-transform: uppercase; padding-top: .35em;
+}
+.news-item h3 { margin: 0 0 .3em; font-family: var(--serif); }
+.news-item p { margin: 0 0 .2em; }
+.news-item .photo { margin-top: 14px; max-width: 340px; }
+
+/* ---------- СПИСОК СОБАК — музейные плашки ---------- */
+.dog-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; }
+.dog-card { display: block; color: var(--ink); }
+.dog-card:hover { text-decoration: none; }
+.dog-card:hover .photo { box-shadow: inset 0 0 0 6px var(--paper), inset 0 0 0 7px var(--accent); }
+.dog-card .photo { aspect-ratio: 4/3; }
+.dog-card .dog-card-body { padding: 14px 4px 0; text-align: center; }
+.dog-card .dog-name { font-family: var(--display); font-size: 1.25rem; }
+.dog-card .dog-call { display: block; color: var(--accent); font-style: italic; margin-top: 2px; }
+.dog-card .dog-meta {
+  color: var(--ink-soft); font-size: .68rem; letter-spacing: .12em;
+  text-transform: uppercase; margin-top: 8px;
+}
+
+/* ---------- КАРТОЧКА СОБАКИ — «карта экземпляра» ---------- */
+.dog-photos { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin: 12px 0 26px; }
+.data-list { margin: 0 0 10px; padding: 0; border-top: 2px solid var(--line-ink); }
+.data-list div { display: flex; gap: 16px; padding: 11px 0; border-bottom: 1px solid var(--line); }
+.data-list dt {
+  font-weight: 600; min-width: 190px; color: var(--ink-soft);
+  font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; padding-top: .18em;
+}
+.data-list dd { margin: 0; color: var(--ink); font-size: 1.02rem; }
+.badge {
+  display: inline-block; font-size: .68rem; letter-spacing: .12em; text-transform: uppercase;
+  padding: 2px 10px; border: 1px solid #4f7a3f; color: #3f6b30; background: transparent;
+}
+.badge.carrier { border-color: var(--accent-2); color: var(--accent-2); }
+
+.results-list { list-style: none; padding: 0; margin: 0; }
+.results-list li { padding: 9px 0 9px 22px; border-bottom: 1px dotted var(--line); position: relative; }
+.results-list li::before { content: "—"; position: absolute; left: 0; color: var(--gold); }
+
+.back-link {
+  font-size: .7rem; letter-spacing: .16em; text-transform: uppercase; font-weight: 600;
+}
+
+/* ---------- ПОМЁТЫ — «дневник» ---------- */
+.litter {
+  border-top: 3px double var(--line-ink); border-bottom: 1px solid var(--line);
+  padding: 26px 0 30px; margin-bottom: 34px;
+}
+.litter .litter-head h2 { margin-top: 0; border: none; color: var(--ink); font-family: var(--display); font-weight: 400; font-size: 1.9rem; }
+.litter .litter-date { color: var(--gold); font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; margin-bottom: .3em; }
+
+.puppy { border-top: 1px solid var(--line); padding-top: 18px; margin-top: 20px; }
+.puppy .puppy-top { display: flex; flex-wrap: wrap; gap: 4px 14px; align-items: baseline; }
+.puppy .pup-name { font-family: var(--display); font-size: 1.3rem; }
+.puppy .pup-nick { color: var(--accent); font-style: italic; }
+.puppy .pup-mini { color: var(--ink-soft); font-size: .82rem; letter-spacing: .04em; margin-top: 2px; }
+
+/* Бухгалтерская таблица весов */
+table.weights { width: 100%; border-collapse: collapse; margin-top: 14px; font-size: .92rem; }
+table.weights caption { text-align: left; }
+table.weights th, table.weights td { padding: 7px 4px; border-bottom: 1px solid var(--line); }
+table.weights thead th {
+  border-bottom: 1.5px solid var(--line-ink);
+  font-size: .64rem; letter-spacing: .16em; text-transform: uppercase; color: var(--ink-soft); font-weight: 600;
+}
+table.weights th { text-align: left; }
+table.weights td:last-child, table.weights th:last-child { text-align: right; font-variant-numeric: oldstyle-nums; }
+table.weights tbody tr:nth-child(odd) td { background: rgba(200,185,151,.14); }
+
+.parents-box {
+  margin-top: 22px; padding: 16px 20px; background: var(--paper-2); border: 1px solid var(--line);
+  font-size: .96rem;
+}
+.parents-box b {
+  display: inline-block; color: var(--gold); font-weight: 600;
+  font-size: .7rem; letter-spacing: .18em; text-transform: uppercase; margin-bottom: 6px;
+}
+
+/* ---------- ГАЛЕРЕЯ ---------- */
+.gallery-album { margin-bottom: 40px; }
+.gallery-album h2 { font-family: var(--display); font-weight: 400; color: var(--ink); font-size: 1.5rem; }
+.gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+
+/* ---------- ССЫЛКИ ---------- */
+.links-list { list-style: none; padding: 0; margin: 0; border-top: 2px solid var(--line-ink); }
+.links-list li { padding: 15px 0; border-bottom: 1px solid var(--line); }
+.links-list li a { font-family: var(--display); font-size: 1.2rem; }
+.links-list .link-note { color: var(--ink-soft); font-style: italic; font-size: .92rem; }
+
+/* ---------- КОНТАКТЫ ---------- */
+.contact-block { line-height: 2.1; border-top: 2px solid var(--line-ink); padding-top: 18px; }
+.contact-block > div { border-bottom: 1px solid var(--line); padding: 6px 0; }
+.contact-block .label {
+  color: var(--gold); display: inline-block; min-width: 120px;
+  font-size: .7rem; letter-spacing: .16em; text-transform: uppercase; font-weight: 600;
+}
+.map-embed {
+  border: 1px solid var(--line-ink);
+  box-shadow: inset 0 0 0 6px var(--paper), inset 0 0 0 7px var(--line);
+  overflow: hidden; margin: 26px 0; aspect-ratio: 16 / 9; background: var(--paper-3);
+}
+.map-embed iframe { width: 100%; height: 100%; border: 0; }
+
+/* ---------- АНИМАЦИИ ---------- */
+@keyframes riseIn { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+.hero > * { animation: riseIn .7s ease both; }
+.hero::before { animation-delay: .05s; }
+.hero .kennel { animation-delay: .15s; }
+.hero .kennel-sub { animation-delay: .3s; }
+@media (prefers-reduced-motion: reduce) {
+  *, .hero > *, #content, .site-header { animation: none !important; }
+}
+
+/* =========================================================================
+   АДАПТИВ
+   ========================================================================= */
+/* меню в гамбургер, когда не помещается в строку (уточняется скриптом) */
+@media (max-width: 920px) {
+  .nav-toggle { display: flex; }
+  .site-nav {
+    position: absolute; top: 76px; left: 0; right: 0;
+    background: var(--paper); border-bottom: 3px double var(--line-ink); display: none;
+  }
+  .site-nav.open { display: block; }
+  .site-nav ul { flex-direction: column; gap: 0; padding: 6px 24px; }
+  .site-nav a { padding: 14px 0; border-bottom: 1px solid var(--line); }
+  .site-nav a.active { border-color: var(--accent); }
+}
+
+@media (max-width: 720px) {
+  body { font-size: 17px; }
+  .dog-grid { grid-template-columns: 1fr; gap: 26px; }
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+  .dog-photos { grid-template-columns: 1fr; }
+  h1 { font-size: 2.1rem; }
+  .news-item { grid-template-columns: 1fr; column-gap: 0; }
+  .news-item .date { grid-column: 1; grid-row: auto; margin-bottom: 4px; }
+  .news-item > * { grid-column: 1; }
+  .data-list div { flex-direction: column; gap: 2px; }
+  .data-list dt { min-width: 0; }
+}
