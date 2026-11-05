@@ -15,7 +15,7 @@ const NAV = [
   { label: "O plemeni",    href: "o-plemeni.html",    key: "plemeni" },
   { label: "Fotogalerie",  href: "fotogalerie.html",  key: "galerie" },
   { label: "Odkazy",       href: "odkazy.html",       key: "odkazy" },
-  { label: "Kurzy měn",    href: "kurzy.html",        key: "kurzy" },
+  { label: "Курсы валют",  href: "kurzy.html",        key: "kurzy" },
   { label: "Kontakty",     href: "kontakty.html",     key: "kontakty" }
 ];
 
@@ -361,7 +361,7 @@ async function loadRates() {
 function fmtNum(n) {
   const abs = Math.abs(n);
   const digits = abs >= 1000 ? 0 : abs >= 1 ? 2 : 4;
-  return n.toLocaleString("cs-CZ", { minimumFractionDigits: abs >= 1000 ? 0 : 2, maximumFractionDigits: digits });
+  return n.toLocaleString("ru-RU", { minimumFractionDigits: abs >= 1000 ? 0 : 2, maximumFractionDigits: digits });
 }
 
 function renderKurzy(host) {
@@ -371,22 +371,22 @@ function renderKurzy(host) {
     c.code + ' — ' + esc(c.name) + '</option>').join("");
 
   host.innerHTML =
-    '<h1 class="page-title">Kurzy měn</h1>' +
-    '<p class="lead">Přepočítejte si libovolné měny — třeba rubly na eura nebo koruny na dolary.</p>' +
+    '<h1 class="page-title">Курсы валют</h1>' +
+    '<p class="lead">Переведите любую валюту в другую — например, рубли в евро или кроны в доллары.</p>' +
     '<div class="fx-box">' +
-      '<label class="fx-field">Částka<input id="fx-amount" type="number" inputmode="decimal" min="0" step="any" value="100"></label>' +
+      '<label class="fx-field">Сумма<input id="fx-amount" type="number" inputmode="decimal" min="0" step="any" value="100"></label>' +
       '<div class="fx-row">' +
-        '<label class="fx-field">Z měny<select id="fx-from">' + opts("RUB") + '</select></label>' +
-        '<button type="button" id="fx-swap" class="fx-swap" aria-label="Prohodit měny">⇄</button>' +
-        '<label class="fx-field">Na měnu<select id="fx-to">' + opts("EUR") + '</select></label>' +
+        '<label class="fx-field">Из валюты<select id="fx-from">' + opts("RUB") + '</select></label>' +
+        '<button type="button" id="fx-swap" class="fx-swap" aria-label="Поменять валюты местами">⇄</button>' +
+        '<label class="fx-field">В валюту<select id="fx-to">' + opts("EUR") + '</select></label>' +
       '</div>' +
       '<div class="fx-result" id="fx-result" aria-live="polite">…</div>' +
-      '<div class="fx-status" id="fx-status">Načítám aktuální kurzy…</div>' +
+      '<div class="fx-status" id="fx-status">Загружаю актуальные курсы…</div>' +
     '</div>' +
-    '<h2>Přehled kurzů</h2>' +
-    '<p class="fx-sub">Kolik stojí 1 jednotka vybrané měny:</p>' +
-    '<label class="fx-field fx-base">Základní měna<select id="fx-base">' + opts("EUR") + '</select></label>' +
-    '<table class="fx-table"><thead><tr><th>Měna</th><th>Kurz</th></tr></thead><tbody id="fx-rows"></tbody></table>';
+    '<h2>Обзор курсов</h2>' +
+    '<p class="fx-sub">Сколько стоит 1 единица выбранной валюты:</p>' +
+    '<label class="fx-field fx-base">Базовая валюта<select id="fx-base">' + opts("EUR") + '</select></label>' +
+    '<table class="fx-table"><thead><tr><th>Валюта</th><th>Курс</th></tr></thead><tbody id="fx-rows"></tbody></table>';
 
   const $ = id => document.getElementById(id);
   let data = { rates: cfg.fallback, source: "fallback", date: cfg.fallbackDate };
@@ -397,7 +397,7 @@ function renderKurzy(host) {
     const amt = parseFloat($("fx-amount").value);
     const from = $("fx-from").value, to = $("fx-to").value;
     $("fx-result").innerHTML = isNaN(amt)
-      ? "Zadejte částku."
+      ? "Введите сумму."
       : esc(fmtNum(amt) + " " + from) + ' = <b>' + esc(fmtNum(conv(amt, from, to)) + " " + to) + '</b>' +
         '<small>1 ' + esc(from) + ' = ' + esc(fmtNum(conv(1, from, to))) + ' ' + esc(to) + '</small>';
 
@@ -407,9 +407,9 @@ function renderKurzy(host) {
       esc(fmtNum(conv(1, base, c.code))) + '</td></tr>').join("");
 
     const st = $("fx-status");
-    if (data.source === "live") st.textContent = "Aktuální kurzy · " + data.date;
-    else if (data.source === "cache") st.textContent = "Nelze načíst nové kurzy — použity naposledy stažené (" + data.date + ").";
-    else st.textContent = "Nelze načíst živé kurzy — použity orientační průměrné kurzy (" + data.date + "). Skutečný kurz se může lišit.";
+    if (data.source === "live") st.textContent = "Актуальные курсы · " + data.date;
+    else if (data.source === "cache") st.textContent = "Не удалось загрузить новые курсы — использованы последние сохранённые (" + data.date + ").";
+    else st.textContent = "Не удалось загрузить свежие курсы — использованы ориентировочные средние курсы (" + data.date + "). Реальный курс может отличаться.";
     st.className = "fx-status " + data.source;
   }
 

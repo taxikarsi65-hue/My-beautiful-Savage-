@@ -397,18 +397,18 @@ const SITE = {
      ====================================================================== */
   kurzy: {
     currencies: [
-      { code: "EUR", name: "euro" },
-      { code: "USD", name: "americký dolar" },
-      { code: "CZK", name: "česká koruna" },
-      { code: "RUB", name: "ruský rubl" },
-      { code: "GBP", name: "britská libra" },
-      { code: "PLN", name: "polský zlotý" },
-      { code: "CHF", name: "švýcarský frank" },
-      { code: "UAH", name: "ukrajinská hřivna" },
-      { code: "CNY", name: "čínský juan" },
-      { code: "TRY", name: "turecká lira" }
+      { code: "EUR", name: "евро" },
+      { code: "USD", name: "доллар США" },
+      { code: "CZK", name: "чешская крона" },
+      { code: "RUB", name: "российский рубль" },
+      { code: "GBP", name: "британский фунт" },
+      { code: "PLN", name: "польский злотый" },
+      { code: "CHF", name: "швейцарский франк" },
+      { code: "UAH", name: "украинская гривна" },
+      { code: "CNY", name: "китайский юань" },
+      { code: "TRY", name: "турецкая лира" }
     ],
-    fallbackDate: "průměr 2025",
+    fallbackDate: "среднее за 2025",
     fallback: { EUR: 1, USD: 1.10, CZK: 25.0, RUB: 100, GBP: 0.85, PLN: 4.3, CHF: 0.95, UAH: 44, CNY: 7.9, TRY: 38 }
   },
 
