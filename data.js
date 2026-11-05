@@ -389,6 +389,30 @@ const SITE = {
   ],
 
   /* ======================================================================
+     7b) KURZY — kurzy.html (конвертер валют)
+     currencies — какие валюты показывать (можно добавлять/убирать).
+     fallback   — СРЕДНИЕ курсы «сколько единиц за 1 EUR». Используются, только
+                  если не получилось загрузить свежие и нет сохранённых. Обновляй
+                  раз в пару месяцев вместе с fallbackDate.
+     ====================================================================== */
+  kurzy: {
+    currencies: [
+      { code: "EUR", name: "euro" },
+      { code: "USD", name: "americký dolar" },
+      { code: "CZK", name: "česká koruna" },
+      { code: "RUB", name: "ruský rubl" },
+      { code: "GBP", name: "britská libra" },
+      { code: "PLN", name: "polský zlotý" },
+      { code: "CHF", name: "švýcarský frank" },
+      { code: "UAH", name: "ukrajinská hřivna" },
+      { code: "CNY", name: "čínský juan" },
+      { code: "TRY", name: "turecká lira" }
+    ],
+    fallbackDate: "průměr 2025",
+    fallback: { EUR: 1, USD: 1.10, CZK: 25.0, RUB: 100, GBP: 0.85, PLN: 4.3, CHF: 0.95, UAH: 44, CNY: 7.9, TRY: 38 }
+  },
+
+  /* ======================================================================
      8) KONTAKTY — kontakty.html  (без формы обратной связи!)
      ====================================================================== */
   kontakty: {

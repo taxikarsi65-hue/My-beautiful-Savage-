@@ -345,3 +345,27 @@ table.weights tbody tr:nth-child(odd) td { background: rgba(200,185,151,.14); }
   .data-list div { flex-direction: column; gap: 2px; }
   .data-list dt { min-width: 0; }
 }
+
+/* ---------- KURZY MĚN ---------- */
+.fx-box { border: 2px solid var(--line-ink); background: var(--paper-2); padding: 20px; margin-bottom: 28px; }
+.fx-field { display: block; font-size: .85rem; color: var(--ink-soft); letter-spacing: .04em; text-transform: uppercase; flex: 1; }
+.fx-field input, .fx-field select {
+  display: block; width: 100%; margin-top: 4px; padding: 10px 12px;
+  font: inherit; font-size: 1.05rem; color: var(--ink);
+  background: var(--paper); border: 1px solid var(--line-ink); border-radius: 0;
+}
+.fx-row { display: flex; align-items: flex-end; gap: 10px; margin-top: 14px; }
+.fx-swap { font-size: 1.3rem; padding: 8px 12px; background: var(--paper); border: 1px solid var(--line-ink); color: var(--accent); cursor: pointer; }
+.fx-swap:hover { background: var(--paper-3); }
+.fx-result { margin-top: 20px; font-family: var(--display); font-size: 1.5rem; line-height: 1.3; }
+.fx-result b { color: var(--accent); }
+.fx-result small { display: block; font-family: var(--serif); font-size: .9rem; color: var(--ink-soft); }
+.fx-status { margin-top: 12px; font-size: .85rem; font-style: italic; color: var(--ink-soft); }
+.fx-status.fallback { color: var(--accent); }
+.fx-sub { margin: 0 0 8px; color: var(--ink-soft); }
+.fx-base { max-width: 320px; margin-bottom: 14px; }
+.fx-table { width: 100%; border-collapse: collapse; border-top: 2px solid var(--line-ink); }
+.fx-table th, .fx-table td { padding: 10px 6px; border-bottom: 1px solid var(--line); text-align: left; font-weight: normal; }
+.fx-table td { text-align: right; font-weight: bold; }
+.fx-table th span { color: var(--ink-soft); font-style: italic; font-size: .88rem; margin-left: 6px; }
+@media (max-width: 520px) { .fx-row { flex-direction: column; align-items: stretch; } .fx-swap { align-self: center; } }
