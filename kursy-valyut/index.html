@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Курсы валют — конвертер</title>
+  <meta name="description" content="Конвертер валют: рубли, евро, доллары, кроны и другие. Свежие курсы, а если их не загрузить — средние.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top"><div class="wrap">
+    <div class="logo">💱 Курсы валют</div>
+    <div class="status" id="status">Загружаю курсы…</div>
+  </div></header>
+
+  <main class="wrap">
+    <section class="card converter">
+      <h1>Конвертер валют</h1>
+      <label class="field">Сумма
+        <input id="amount" type="number" inputmode="decimal" min="0" step="any" value="100">
+      </label>
+      <div class="row">
+        <label class="field">Из валюты <select id="from"></select></label>
+        <button type="button" id="swap" class="swap" aria-label="Поменять валюты местами">⇄</button>
+        <label class="field">В валюту <select id="to"></select></label>
+      </div>
+      <div class="result" id="result" aria-live="polite"></div>
+    </section>
+
+    <section>
+      <div class="head">
+        <h2>Курсы валют</h2>
+        <label class="field inline">Относительно
+          <select id="base"></select>
+        </label>
+      </div>
+      <div class="grid" id="grid"></div>
+    </section>
+
+    <p class="note" id="note"></p>
+  </main>
+
+  <footer class="foot"><div class="wrap">Курсы носят справочный характер. Для сделок уточняйте курс в банке или обменнике.</div></footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
